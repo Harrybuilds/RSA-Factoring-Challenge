@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import sys
+from sympy import factorint
+
+def factorize_large_number(number):
+    factors = factorint(number)
+    return factors
+
+def main(filename):
+    with open(filename, 'r') as file:
+        for line in file:
+            Number = int(line.strip())
+            prime_factors = factorize_large_number(Number)
+            if prime_factors:
+                factors = []
+                for number in prime_factors:
+                    factors.append(number)
+            print(f"{Number}={factors[1]}*{factors[0]}")
+             
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    main(filename)
